@@ -22,7 +22,9 @@
   <img align="center" alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/gabrieldouglas9/gabrieldouglas9/output/github-contribution-grid-snake.svg">
 </picture>
 
+---
 
+<h3><i>Contatos</i></h3>
 <div> 
   <a href="https://instagram.com/gabriel.dgl9" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
   <a href = "mailto:alessandrogabriel660@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
