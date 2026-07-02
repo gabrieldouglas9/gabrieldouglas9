@@ -30,6 +30,7 @@
   <a href="https://instagram.com/gabriel.dgl9" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
   <a href = "mailto:alessandrogabriel660@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
   <a href="https://www.linkedin.com/in/gabriel-alessandro-douglas" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+  <p><img align="center" src="https://github-readme-stats.shion.dev/api?username=gabrieldouglas9&theme=dark&hide_border=false&include_all_commits=false&count_private=false" /></p>
 </div>
 
 ##
