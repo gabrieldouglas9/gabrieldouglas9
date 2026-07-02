@@ -4,8 +4,7 @@
 ---
 <div>
   <a href="htpps://github.com/joaomiez">
-  <img height="175em" src="https://github-readme-stats.vercel.app/api?username=gabrieldouglas9&show_icons=true&theme=github_dark&include_all_commits=true&count_private=true"/>
-  <img height="175em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gabrieldouglas9&layout=compact&langs_count=16&theme=github_dark"/>
+  <p><img align="center" src="https://github-readme-stats.shion.dev/api?username=gabrieldouglas9&theme=github_dark&hide_border=false&include_all_commits=false&count_private=false" /></p>
 </div>
 <div style="display: inline_block"><br>
   <img align="center" alt="Rafa-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
@@ -30,7 +29,6 @@
   <a href="https://instagram.com/gabriel.dgl9" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
   <a href = "mailto:alessandrogabriel660@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
   <a href="https://www.linkedin.com/in/gabriel-alessandro-douglas" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
-  <p><img align="center" src="https://github-readme-stats.shion.dev/api?username=gabrieldouglas9&theme=dark&hide_border=false&include_all_commits=false&count_private=false" /></p>
 </div>
 
 ##
