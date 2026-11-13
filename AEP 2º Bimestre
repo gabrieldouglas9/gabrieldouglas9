@@ -1,0 +1,278 @@
+#include <stdio.h>
+#include <locale.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct escola {
+    int id;
+    char nome[100];
+    char endereco[100];
+};
+
+struct tema {
+    int id;
+    char descricao[100];
+};
+
+struct acao {
+    int id;
+    char nome[100];
+    int escola;
+    int tema;
+    char data[20];
+    char responsavel[100];
+    char publicoalvo[100];
+    int participantes;
+    int status;
+};
+
+escola escolas[100];
+tema temas[100];
+acao acoes[100];
+char login[50];
+int senha, opcao, planejadas = 0, andamento = 0, realizadas = 0, canceladas = 0, totalescolas = 0, totaltemas = 0, totalacoes = 0;
+float alunos = 0.0 , alunospresentes = 0.0, porcentagem = 0.0;
+
+
+int main() {
+    setlocale(LC_ALL, "Portuguese");
+    printf("---------------------");
+    printf("\n     PSE EM ACAO");
+    printf("\n---------------------");
+    do{
+        printf("\nLogin: ");
+        scanf(" %49[^\n]", login);
+        printf("Senha: ");
+        scanf("%d", &senha);
+        if (strcmp(login, "admin123") != 0 || senha != 123456) {
+            printf("\nLOGIN/SENHA INCORRETOS!\n");
+        }
+
+    } while (strcmp(login, "admin123") != 0 || senha != 123456);
+
+    printf("\nACESSO CONCEDIDO!\n");
+	system("pause");
+    system("cls");
+    
+    do{
+        printf("\n---------------------");
+        printf("\n     PSE EM ACAO");
+        printf("\n---------------------");
+        printf("\n[1] CADASTRAR ESCOLA");
+        printf("\n[2] CADASTRAR ACAO");
+        printf("\n[3] CADASTRAR TEMA");
+        printf("\n[4] CONSULTAR ACAO");
+        printf("\n[5] LISTAR ACOES");
+        printf("\n[6] ATUALIZAR STATUS");
+        printf("\n[7] RELATORIOS");
+        printf("\n[0] SAIR");
+        printf("\n---------------------\n");
+        scanf("%d", &opcao);
+        system("cls");
+        
+        switch(opcao){
+            case 1:
+                if(totalescolas >= 100) {
+                    printf("Maximo de escolas cadastradas!");
+                    break;
+                }
+                printf("\n===== CADASTRAR ESCOLA =====");
+                escolas[totalescolas].id = totalescolas + 1;
+                printf("\nNome da escola: ");
+                scanf(" %99[^\n]", escolas[totalescolas].nome);
+                printf("Endereco: ");
+                scanf(" %99[^\n]", escolas[totalescolas].endereco);
+                totalescolas += 1;
+                printf("\nEscola cadastrada!\n");
+                break;
+
+            case 2:
+                if(totalescolas == 0 || totaltemas == 0) {
+                    printf("\nCadastre uma escola e um tema primeiro!\n");
+                    break;
+                }
+                if(totalacoes >= 100) {
+                    printf("\nMaximo de acoes cadastradas!\n");
+                    break;
+                }
+                printf("\n===== CADASTRAR ACAO =====");
+                acoes[totalacoes].id = totalacoes + 1;
+                printf("\nNome da acao: ");
+                scanf(" %99[^\n]", acoes[totalacoes].nome);
+                printf("\nEscolas cadastradas:\n");
+                for(int i = 0; i < totalescolas; i++){
+                    printf("[%d] %s\n", escolas[i].id, escolas[i].nome);
+                }
+                printf("Codigo da escola: ");
+                scanf("%d", &acoes[totalacoes].escola);
+                printf("\nTemas cadastrados:\n");
+                for (int i = 0; i < totaltemas; i++) {
+                    printf("[%d] %s\n", temas[i].id, temas[i].descricao);
+                }
+                printf("Codigo do tema: ");
+                scanf("%d", &acoes[totalacoes].tema);
+                if (acoes[totalacoes].escola < 1 || acoes[totalacoes].escola > totalescolas || acoes[totalacoes].tema < 1 || acoes[totalacoes].tema > totaltemas){
+                    printf("\nCodigo de escola ou tema invalido!\n");
+                    break;
+                }
+                printf("Data prevista(XX/XX/XXXX): ");
+                scanf(" %19[^\n]", acoes[totalacoes].data);
+                printf("Responsavel: ");
+                scanf(" %99[^\n]", acoes[totalacoes].responsavel);
+                printf("Publico-alvo: ");
+                scanf(" %99[^\n]", acoes[totalacoes].publicoalvo);
+                printf("Quantidade prevista de participantes: ");
+                scanf("%d", &acoes[totalacoes].participantes);
+                alunos += acoes[totalacoes].participantes;
+                if (acoes[totalacoes].participantes < 0){
+                    printf("\nQuantidade invalida!\n");
+                    break;
+                }
+                acoes[totalacoes].status = 1;
+                totalacoes += 1;
+                printf("\nAcao cadastrada!\n");
+                break;
+                
+            case 3:
+                if (totaltemas >= 100) {
+                    printf("\nMaximo de temas cadastrados!\n");
+                    break;
+                }
+                printf("\n===== CADASTRAR TEMA =====");
+                temas[totaltemas].id = totaltemas + 1;
+                printf("\nDescricao do tema: ");
+                scanf(" %99[^\n]", temas[totaltemas].descricao);
+                totaltemas += 1;
+                printf("\nTema cadastrado!\n");
+                break;
+
+            case 4: {
+                int codigo;
+                int encontrou = 0;
+                printf("\n===== CONSULTAR ACAO =====");
+                printf("\nDigite o codigo da acao: ");
+                scanf("%d", &codigo);
+                for (int i = 0; i < totalacoes; i++) {
+                    if (acoes[i].id == codigo) {
+                        printf("\nNome: %s", acoes[i].nome);
+                        printf("\nData: %s", acoes[i].data);
+                        printf("\nResponsavel: %s", acoes[i].responsavel);
+                        printf("\nPublico-alvo: %s", acoes[i].publicoalvo);
+                        printf("\nParticipantes previstos: %d", acoes[i].participantes);
+                        printf("\nStatus: ");
+                        if (acoes[i].status == 1)
+                            printf("Planejada\n");
+                        else if (acoes[i].status == 2)
+                            printf("Em andamento\n");
+                        else if (acoes[i].status == 3)
+                            printf("Realizada\n");
+                        else
+                            printf("Cancelada\n");
+                        encontrou = 1;
+                    }
+                }
+                if (encontrou == 0) {
+                    printf("\nAcao nao encontrada!\n");
+                }
+                break;
+            }
+
+            case 5:
+
+                printf("\n===== LISTAR DE ACOES =====");
+                if (totalacoes == 0) {
+                    printf("\nNenhuma acao cadastrada!\n");
+                }
+                for (int i = 0; i < totalacoes; i++) {
+                    printf("\n\nCodigo: %d", acoes[i].id);
+                    printf("\nNome: %s", acoes[i].nome);
+                    printf("\nData: %s", acoes[i].data);
+                    printf("\nResponsavel: %s", acoes[i].responsavel);
+                    printf("\nParticipantes previstos: %d", acoes[i].participantes);
+                    printf("\nStatus: ");
+                    if (acoes[i].status == 1)
+                        printf("Planejada\n");
+                    else if (acoes[i].status == 2)
+                        printf("Em andamento\n");
+                    else if (acoes[i].status == 3)
+                        printf("Realizada\n");
+                    else
+                        printf("Cancelada\n");
+                }
+                break;
+
+            case 6: {
+                int codigo;
+                int novostatus;
+                int encontrou = 0;
+                printf("\n===== ATUALIZAR STATUS =====");
+                printf("\nCodigo da acao: ");
+                scanf("%d", &codigo);
+                for (int i = 0; i < totalacoes; i++) {
+                    if (acoes[i].id == codigo) {
+                        printf("\n[1] Planejada");
+                        printf("\n[2] Em andamento");
+                        printf("\n[3] Realizada");
+                        printf("\n[4] Cancelada");
+                        printf("\nNovo status: ");
+                        scanf("%d", &novostatus);
+                        if (novostatus >= 1 && novostatus <= 4) {
+                            acoes[i].status = novostatus;
+                            if(novostatus == 3){
+                            	printf("\nDigite a quantidade de alunos presentes: ");
+                            	scanf(" %f", &alunospresentes);
+							}
+							printf("\nStatus atualizado!\n");
+                        }
+                        else {
+                            printf("\nStatus invalido!\n");
+                        }
+                        encontrou = 1;
+                    }
+                }
+                if (encontrou == 0) {
+                    printf("\nAcao nao encontrada!\n");
+                }
+                break;
+            }
+
+            case 7: {
+                printf("\n===== RELATORIO =====");
+                for (int i = 0; i < totalacoes; i++) {
+                    if (acoes[i].status == 1)
+                        planejadas++;
+                    else if (acoes[i].status == 2)
+                        andamento++;
+                    else if (acoes[i].status == 3)
+                        realizadas++;
+                    else if (acoes[i].status == 4)
+                        canceladas++;
+                }
+                porcentagem = (alunospresentes / alunos) * 100;
+                printf("\nTotal de Escolas: %d", totalescolas);
+                printf("\nTotal de Temas: %d", totaltemas);
+                printf("\nTotal de Acoes: %d", totalacoes);
+                printf("\n\nPlanejadas: %d", planejadas);
+                printf("\nEm andamento: %d", andamento);
+                printf("\nRealizadas: %d", realizadas);
+                printf("\nCanceladas: %d", canceladas);
+                printf("\nAlunos realizados: %.0f", alunospresentes);
+                printf("\nA porcentagem de presenca dos alunos foram de %.0f%%\n", porcentagem);
+                break;
+            }
+            
+            case 0:
+                printf("\nEncerrando o sistema...");
+                break;
+
+            default:
+                printf("\nOpcao invalida!\n");
+                break;
+        }
+        if (opcao != 0) {
+            system("pause");
+            system("cls");
+        }
+    }while( opcao != 0);
+return 0;
+}
